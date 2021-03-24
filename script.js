@@ -18,7 +18,7 @@ startButton.addEventListener("click", () => {
 
 function computerPlay() {
   const symbols = ["✊", "✋", "✌️"];
-  const randomNumber = Math.floor(Math.random() * 3);
+  const randomNumber = Math.floor(Math.random() * symbols.length);
   return symbols[randomNumber];
 }
 
