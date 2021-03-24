@@ -11,14 +11,9 @@ startButton.addEventListener("click", () => {
 });
 
 function computerPlay() {
-  const randomNumber = Math.round(Math.random() * 3);
-  if (randomNumber === 1) {
-    return "✊";
-  } else if (randomNumber === 2) {
-    return "✋";
-  } else {
-    return "✌️";
-  }
+  const symbols = ["✊", "✋", "✌️"];
+  const randomNumber = Math.floor(Math.random() * symbols.length);
+  return symbols[randomNumber];
 }
 
 const buttonRock = document.getElementById("rock");
@@ -90,7 +85,7 @@ buttonScissors.addEventListener("click", function () {
     finalResult();
   } else {
     document.querySelector(".computer-selection").textContent = "✌️";
-    document.querySelector(".round-result").textContent = "it's a tie.";
+    document.querySelector(".round-result").textContent = "It's a tie.";
   }
 });
 
@@ -107,29 +102,19 @@ function finalResult() {
     buttonRock.setAttribute("disabled", "");
     buttonPaper.setAttribute("disabled", "");
     buttonScissors.setAttribute("disabled", "");
-    startButton.addEventListener("click", () => {
-      document.querySelector(".player-score").textContent = 0;
-      document.querySelector(".computer-score").textContent = 0;
-      playerScore = 0;
-      computerScore = 0;
-      document.querySelector(".player-selection").textContent = "";
-      document.querySelector(".computer-selection").textContent = "";
-      document.querySelector(".round-result").textContent = "";
-
-    });
   } else if (computerScore === 5) {
     startButton.textContent = "You loose the game...";
     buttonRock.setAttribute("disabled", "");
     buttonPaper.setAttribute("disabled", "");
     buttonScissors.setAttribute("disabled", "");
-    startButton.addEventListener("click", () => {
-      document.querySelector(".player-score").textContent = 0;
-      document.querySelector(".computer-score").textContent = 0;
-      playerScore = 0;
-      computerScore = 0;
-      document.querySelector(".player-selection").textContent = "";
-      document.querySelector(".computer-selection").textContent = "";
-      document.querySelector(".round-result").textContent = "";
-    });
   }
+  startButton.addEventListener("click", () => {
+    document.querySelector(".player-score").textContent = 0;
+    document.querySelector(".computer-score").textContent = 0;
+    playerScore = 0;
+    computerScore = 0;
+    document.querySelector(".player-selection").textContent = "";
+    document.querySelector(".computer-selection").textContent = "";
+    document.querySelector(".round-result").textContent = "";
+  });
 }
