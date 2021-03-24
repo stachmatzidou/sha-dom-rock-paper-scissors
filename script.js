@@ -1,5 +1,11 @@
 const selectionButton = document.querySelectorAll(".selection");
 const startButton = document.querySelector(".start-game");
+const buttonRock = document.getElementById("rock");
+const buttonPaper = document.getElementById("paper");
+const buttonScissors = document.getElementById("scissors");
+const playerSelection = document.querySelector(".player-selection");
+const computerSelection = document.querySelector(".computer-selection");
+const roundResult = document.querySelector(".round-result");
 let playerScore = 0;
 let computerScore = 0;
 
@@ -12,31 +18,27 @@ startButton.addEventListener("click", () => {
 
 function computerPlay() {
   const symbols = ["✊", "✋", "✌️"];
-  const randomNumber = Math.floor(Math.random() * symbols.length);
+  const randomNumber = Math.floor(Math.random() * 3);
   return symbols[randomNumber];
 }
 
-const buttonRock = document.getElementById("rock");
-const buttonPaper = document.getElementById("paper");
-const buttonScissors = document.getElementById("scissors");
-
 buttonRock.addEventListener("click", function () {
   computerPlay();
-  let computerSelection = computerPlay();
-  document.querySelector(".player-selection").textContent = "✊";
+  let computerChoice = computerPlay();
+  playerSelection.textContent = "✊";
 
-  if (computerSelection === "✊") {
-    document.querySelector(".computer-selection").textContent = "✊";
-    document.querySelector(".round-result").textContent = "It's a tie.";
-  } else if (computerSelection === "✋") {
-    document.querySelector(".computer-selection").textContent = "✋";
-    document.querySelector(".round-result").textContent = "You lose...";
+  if (computerChoice === "✊") {
+    computerSelection.textContent = "✊";
+    roundResult.textContent = "It's a tie.";
+  } else if (computerChoice === "✋") {
+    computerSelection.textContent = "✋";
+    roundResult.textContent = "You lose...";
     computerScore++;
     updateScore();
     finalResult();
   } else {
-    document.querySelector(".computer-selection").textContent = "✌️";
-    document.querySelector(".round-result").textContent = "You win!";
+    computerSelection.textContent = "✌️";
+    roundResult.textContent = "You win!";
     playerScore++;
     updateScore();
     finalResult();
@@ -45,21 +47,21 @@ buttonRock.addEventListener("click", function () {
 
 buttonPaper.addEventListener("click", function () {
   computerPlay();
-  let computerSelection = computerPlay();
-  document.querySelector(".player-selection").textContent = "✋";
+  let computerChoice = computerPlay();
+  playerSelection.textContent = "✋";
 
-  if (computerSelection === "✊") {
-    document.querySelector(".computer-selection").textContent = "✊";
-    document.querySelector(".round-result").textContent = "You win!";
+  if (computerChoice === "✊") {
+    computerSelection.textContent = "✊";
+    roundResult.textContent = "You win!";
     playerScore++;
     updateScore();
     finalResult();
-  } else if (computerSelection === "✋") {
-    document.querySelector(".computer-selection").textContent = "✋";
-    document.querySelector(".round-result").textContent = "It's a tie.";
+  } else if (computerChoice === "✋") {
+    computerSelection.textContent = "✋";
+    roundResult.textContent = "It's a tie.";
   } else {
-    document.querySelector(".computer-selection").textContent = "✌️";
-    document.querySelector(".round-result").textContent = "You lose...";
+    computerSelection.textContent = "✌️";
+    roundResult.textContent = "You lose...";
     computerScore++;
     updateScore();
     finalResult();
@@ -68,24 +70,24 @@ buttonPaper.addEventListener("click", function () {
 
 buttonScissors.addEventListener("click", function () {
   computerPlay();
-  let computerSelection = computerPlay();
-  document.querySelector(".player-selection").textContent = "✌️";
+  let computerChoice = computerPlay();
+  playerSelection.textContent = "✌️";
 
-  if (computerSelection === "✊") {
-    document.querySelector(".computer-selection").textContent = "✊";
-    document.querySelector(".round-result").textContent = "You lose...";
+  if (computerChoice === "✊") {
+    computerSelection.textContent = "✊";
+    roundResult.textContent = "You lose...";
     computerScore++;
     updateScore();
     finalResult();
-  } else if (computerSelection === "✋") {
-    document.querySelector(".computer-selection").textContent = "✋";
-    document.querySelector(".round-result").textContent = "You win!";
+  } else if (computerChoice === "✋") {
+    computerSelection.textContent = "✋";
+    roundResult.textContent = "You win!";
     playerScore++;
     updateScore();
     finalResult();
   } else {
-    document.querySelector(".computer-selection").textContent = "✌️";
-    document.querySelector(".round-result").textContent = "It's a tie.";
+    computerSelection.textContent = "✌️";
+    roundResult.textContent = "It's a tie.";
   }
 });
 
@@ -103,7 +105,7 @@ function finalResult() {
     buttonPaper.setAttribute("disabled", "");
     buttonScissors.setAttribute("disabled", "");
   } else if (computerScore === 5) {
-    startButton.textContent = "You loose the game...";
+    startButton.textContent = "You lose the game...";
     buttonRock.setAttribute("disabled", "");
     buttonPaper.setAttribute("disabled", "");
     buttonScissors.setAttribute("disabled", "");
@@ -113,8 +115,8 @@ function finalResult() {
     document.querySelector(".computer-score").textContent = 0;
     playerScore = 0;
     computerScore = 0;
-    document.querySelector(".player-selection").textContent = "";
-    document.querySelector(".computer-selection").textContent = "";
-    document.querySelector(".round-result").textContent = "";
+    playerSelection.textContent = "";
+    computerSelection.textContent = "";
+    roundResult.textContent = "";
   });
 }
