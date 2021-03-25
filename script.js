@@ -98,17 +98,19 @@ function updateScore() {
   cScore.textContent = computerScore;
 }
 
+function disableButtons() {
+  buttonRock.setAttribute("disabled", "");
+  buttonPaper.setAttribute("disabled", "");
+  buttonScissors.setAttribute("disabled", "");
+}
+
 function finalResult() {
   if (playerScore === 5) {
     startButton.textContent = "You win the game!";
-    buttonRock.setAttribute("disabled", "");
-    buttonPaper.setAttribute("disabled", "");
-    buttonScissors.setAttribute("disabled", "");
+    disableButtons();
   } else if (computerScore === 5) {
     startButton.textContent = "You lose the game...";
-    buttonRock.setAttribute("disabled", "");
-    buttonPaper.setAttribute("disabled", "");
-    buttonScissors.setAttribute("disabled", "");
+    disableButtons();
   }
   startButton.addEventListener("click", () => {
     document.querySelector(".player-score").textContent = 0;
